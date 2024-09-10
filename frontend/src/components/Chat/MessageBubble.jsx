@@ -1,6 +1,6 @@
 import React from "react";
-import { extractTime } from "../utils/DateTimeFormat";
-import { useAuthContext } from "../context/AuthContext";
+import { extractTime } from "../../utils/DateTimeFormat";
+import { useAuthContext } from "../../context/AuthContext";
 const MessageBubble = ({ message, selectedConversation }) => {
 	const { user } = useAuthContext();
 	const sent = message.senderId === selectedConversation._id;

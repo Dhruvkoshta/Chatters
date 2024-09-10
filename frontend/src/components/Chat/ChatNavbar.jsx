@@ -1,32 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import avatar from "../assets/avatar.png";
-import useLogout from "../hooks/useLogout";
-import Loader from "./Loader";
-import { useAuthContext } from "../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
+import useLogout from "../../hooks/useLogout";
+import avatar from "../../assets/avatar.png";
+import Loader from "../Loader";
+import { useThemeContext } from "../../context/ThemeContext";
+import { Link, useNavigate } from "react-router-dom";
 
 const ChatNavbar = ({ selectedConversation }) => {
 	const { logout, loading } = useLogout();
 	const { user } = useAuthContext();
-	const [theme, setTheme] = useState(
-		localStorage.getItem("theme") || "valentine"
-	);
-
-	useEffect(() => {
-		localStorage.setItem("theme", theme);
-		document.querySelector("html").setAttribute("data-theme", theme);
-	}, [theme]);
+	const { theme, setTheme } = useThemeContext();
+	const navigate = useNavigate();
 	return loading ? (
 		<Loader />
 	) : (
-		<div className='flex justify-between w-full items-center sticky top-2 z-10 shadow-2xl shadow-neutral'>
+		<div className='flex justify-between w-full items-center sticky top-2 z-10 '>
 			<label
 				htmlFor='my-drawer-2'
 				className='btn btn-neutral drawer-button lg:hidden mr-2 w-12 h-12'
 			>
 				<GiHamburgerMenu className='text-xl' />
 			</label>
-			<div className='navbar bg-neutral text-neutral-content rounded-lg '>
+			<div className='navbar bg-neutral text-neutral-content rounded-lg shadow-2xl shadow-neutral'>
 				<div className='flex-1 gap-6 items-center'>
 					{selectedConversation && (
 						<img
@@ -39,7 +35,7 @@ const ChatNavbar = ({ selectedConversation }) => {
 				</div>
 
 				<div className='dropdown flex-1 '>
-					<div tabIndex={0} role='button' className='btn '>
+					<div tabIndex={0} role='button' className='btn btn-secondary '>
 						Theme
 						<svg
 							width='12px'
@@ -138,10 +134,9 @@ const ChatNavbar = ({ selectedConversation }) => {
 							className='menu menu-sm dropdown-content bg-neutral rounded-box z-[1] mt-3 w-52 p-2 shadow'
 						>
 							<li>
-								<button className='justify-between'>
-									Profile
-									<span className='badge'>New</span>
-								</button>
+								<Link to={`/profile`}>
+									<button>Profile</button>
+								</Link>
 							</li>
 
 							<li>

@@ -3,8 +3,8 @@ import ChatNavbar from "./ChatNavbar";
 import Messages from "./Messages";
 import MessageInput from "./MessageInput";
 import { LuMessagesSquare } from "react-icons/lu";
-import { useConversationContext } from "../context/ConversationContext";
-import { useAuthContext } from "../context/AuthContext";
+import { useConversationContext } from "../../context/ConversationContext";
+import { useAuthContext } from "../../context/AuthContext";
 
 const ChatRoom = () => {
 	const { selectedConversation, setSelectedConversation } =

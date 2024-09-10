@@ -9,6 +9,7 @@ import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./context/AuthContext";
 import useCheckAuth from "./hooks/useCheckAuth";
 import { SocketContextProvider } from "./context/SocketContext";
+import Profile from "./routes/Profile";
 
 function App() {
 	const { user, setUser } = useAuthContext();
@@ -16,7 +17,7 @@ function App() {
 
 	useEffect(() => {
 		checkAuth();
-	}, []);
+	}, [setUser]);
 
 	console.log(user);
 
@@ -59,6 +60,14 @@ function App() {
 							<SocketContextProvider>
 								<Home />
 							</SocketContextProvider>
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/profile'
+					element={
+						<ProtectedRoute>
+							<Profile />
 						</ProtectedRoute>
 					}
 				/>

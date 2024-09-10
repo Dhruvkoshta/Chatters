@@ -1,8 +1,8 @@
 import React from "react";
 import DrawerItem from "./DrawerItem";
 import DrawerNavbar from "./DrawerNavbar";
-import useGetConversations from "../hooks/useGetConversations";
-import Loader from "./Loader";
+import useGetConversations from "../../hooks/useGetConversations";
+import Loader from "../Loader";
 
 const Drawer = () => {
 	const { loading, conversations } = useGetConversations();

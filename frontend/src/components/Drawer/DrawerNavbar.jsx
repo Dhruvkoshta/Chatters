@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { useConversationContext } from "../context/ConversationContext";
-import useGetConversations from "../hooks/useGetConversations";
+import { useConversationContext } from "../../context/ConversationContext";
+import useGetConversations from "../../hooks/useGetConversations";
 import toast from "react-hot-toast";
 
 const DrawerNavbar = () => {

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
+import { useConversationContext } from "../../context/ConversationContext";
 import MessageBubble from "./MessageBubble";
-import { useConversationContext } from "../context/ConversationContext";
-import useGetMessages from "../hooks/useGetMessages";
-import useListernMessages from "../hooks/useListernMessages";
-import Loader from "./Loader";
+import useGetMessages from "../../hooks/useGetMessages";
+import useListernMessages from "../../hooks/useListernMessages";
+import Loader from "../Loader";
 
 const Messages = () => {
 	const messagesEndRef = useRef(null);

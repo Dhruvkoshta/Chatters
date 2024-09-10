@@ -1,6 +1,6 @@
 import React from "react";
-import { useConversationContext } from "../context/ConversationContext";
-import { useSocketContext } from "../context/SocketContext.jsx";
+import { useConversationContext } from "../../context/ConversationContext";
+import { useSocketContext } from "../../context/SocketContext";
 
 const DrawerItem = ({ conversation }) => {
 	const { selectedConversation, setSelectedConversation } =
@@ -18,7 +18,7 @@ const DrawerItem = ({ conversation }) => {
 			<li
 				className={`${
 					isSelected ? "bg-neutral text-white " : ""
-				} flex items-center justify-start gap-4 hover:bg-neutral hover:text-white p-2 rounded-lg cursor-pointer mb-2`}
+				} flex items-center justify-start gap-4 hover:bg-neutral hover:text-white p-2 rounded-lg cursor-pointer mb-2 `}
 				onClick={() => {
 					setSelectedConversation(conversation);
 				}}

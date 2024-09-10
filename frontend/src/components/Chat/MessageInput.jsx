@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IoSend } from "react-icons/io5";
-import useSendMessage from "../hooks/useSendMessage";
+import useSendMessage from "../../hooks/useSendMessage";
 
 const MessageInput = () => {
 	const [message, setMessage] = useState("");
@@ -25,6 +25,7 @@ const MessageInput = () => {
 					name='message'
 					value={message}
 					onChange={(e) => setMessage(e.target.value)}
+					autoComplete='off'
 				/>
 				<button
 					type='submit'

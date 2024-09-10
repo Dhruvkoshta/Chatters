@@ -1,6 +1,6 @@
 import React from "react";
-import ChatRoom from "../components/ChatRoom";
-import Drawer from "../components/Drawer";
+import ChatRoom from "../components/Chat/ChatRoom";
+import Drawer from "../components/Drawer/Drawer";
 import { ConversationContextProvider } from "../context/ConversationContext";
 const Home = () => {
 	return (
