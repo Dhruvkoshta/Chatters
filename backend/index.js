@@ -14,12 +14,7 @@ dotenv.config();
 const port = process.env.PORT || 5000;
 const __dirname = path.resolve();
 
-app.use(
-	cors({
-		origin: process.env.APP_URL,
-		credentials: true,
-	})
-);
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
