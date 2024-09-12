@@ -16,7 +16,7 @@ const __dirname = path.resolve();
 
 app.use(
 	cors({
-		origin: "chatters-front.vercel.app",
+		origin: [process.env.SERVER_URL, "http://localhost:5173"],
 		credentials: true,
 	})
 );

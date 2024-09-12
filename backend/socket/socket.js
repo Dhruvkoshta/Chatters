@@ -8,7 +8,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
 	cors: {
-		origin: "chatters-front.vercel.app",
+		origin: [process.env.SERVER_URL, "http://localhost:5173"],
 		methods: ["GET", "POST"],
 	},
 });
