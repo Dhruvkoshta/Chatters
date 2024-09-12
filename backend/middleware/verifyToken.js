@@ -5,7 +5,7 @@ export const verifyToken = (req, res, next) => {
 		return res.status(401).json({ message: "User not logged in" });
 	}
 	try {
-		const decoded = jwt.verify(token, process.env.JWT_SECRET);
+		const decoded = jwt.verify(token, `${process.env.JWT_SECRET}`);
 		req.userId = decoded.userId;
 		next();
 	} catch (error) {
