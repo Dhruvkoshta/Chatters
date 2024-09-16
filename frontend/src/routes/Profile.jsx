@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import useUpdateUser from "../hooks/useUpdateUser";
 import { Link } from "react-router-dom";
+import Loader from "../components/Loader";
 
 const Profile = () => {
 	const { user } = useAuthContext();
@@ -11,7 +12,7 @@ const Profile = () => {
 		password: "",
 		profilePic: "",
 	});
-	const [updatedPic, setUpdatedPic] = useState(null);
+	const [updatedPic, setUpdatedPic] = useState([]);
 	const { updateUser, loading } = useUpdateUser();
 
 	const handleChange = (e) => {
@@ -19,14 +20,27 @@ const Profile = () => {
 	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		await updateUser(
-			user.user._id,
-			updatedUser.name,
-			updatedUser.email,
-			updatedUser.password
-		);
+
+		if (updatedPic) {
+			await updateUser(
+				user.user._id,
+				updatedUser.name,
+				updatedUser.email,
+				updatedUser.password,
+				updatedPic
+			);
+		} else {
+			await updateUser(
+				user.user._id,
+				updatedUser.name,
+				updatedUser.email,
+				updatedUser.password
+			);
+		}
 	};
-	return (
+	return loading ? (
+		<Loader />
+	) : (
 		<div className='bg-neutral-content w-full flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-primary'>
 			<aside className='hidden py-4 md:w-1/3 lg:w-1/4 md:block'>
 				<div className='sticky flex flex-col gap-2 p-4 text-sm border-r border-neutral top-12'>
@@ -63,7 +77,13 @@ const Profile = () => {
 										type='file'
 										className='file-input file-input-bordered w-full max-w-xs'
 										name='profilePic'
-										onChange={(e) => setUpdatedPic(e.target.files[0])}
+										onChange={(e) => {
+											const reader = new FileReader();
+											reader.readAsDataURL(e.target.files[0]);
+											reader.onloadend = () => {
+												setUpdatedPic(reader.result);
+											};
+										}}
 									/>
 								</div>
 							</div>

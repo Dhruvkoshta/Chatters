@@ -1,3 +1,4 @@
+import { uploadImage } from "../DB/imageUpload.js";
 import { User } from "../models/user.model.js";
 
 import bcryptjs from "bcryptjs";
@@ -17,7 +18,7 @@ export const getUserForSidebar = async (req, res) => {
 
 export const updateUser = async (req, res) => {
 	try {
-		const { id, name, email, password } = req.body;
+		const { id, name, email, password, profilePic } = req.body;
 		if (!id || !name || !email) {
 			return res.status(400).json({ message: "Please provide all the fields" });
 		}
@@ -29,6 +30,11 @@ export const updateUser = async (req, res) => {
 		const duplicate = await User.findOne({ name, email }).lean().exec();
 		if (duplicate && duplicate._id.toString() !== id.toString()) {
 			return res.status(409).json({ message: "Duplicate username or email" });
+		}
+		let updatedPic;
+		if (profilePic) {
+			updatedPic = await uploadImage(profilePic, name);
+			user.profilePic = updatedPic;
 		}
 		user.name = name;
 		user.email = email;

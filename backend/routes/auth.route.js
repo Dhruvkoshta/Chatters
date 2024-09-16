@@ -29,8 +29,8 @@ authRoutes.post("/register", async (req, res) => {
 			return res.status(400).json({ message: "User already exists" });
 		}
 		const hashedPassword = await bcryptjs.hash(password, 10);
-		const malePic = `https://ui-avatars.com/api/?name=${name}`;
-		const femalePic = `https://ui-avatars.com/api/?name=${name}`;
+		const malePic = `https://avatar.iran.liara.run/public/boy`;
+		const femalePic = `https://avatar.iran.liara.run/public/girl`;
 
 		const user = new User({
 			name,

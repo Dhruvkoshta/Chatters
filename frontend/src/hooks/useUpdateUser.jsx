@@ -7,20 +7,22 @@ const useUpdateUser = () => {
 	const [loading, setLoading] = useState(false);
 	const { setUser } = useAuthContext();
 
-	const updateUser = async (id, name, email, password) => {
+	const updateUser = async (id, name, email, password, updatedPic) => {
 		if (!id || !name || !email) {
 			toast.error("Please fill all the fields");
 			return;
 		}
 		try {
+			setLoading(true);
+			let data;
+			if (updatedPic) {
+				data = { id, name, email, password, profilePic: updatedPic };
+			} else {
+				data = { id, name, email, password };
+			}
 			const res = await axios.patch(
 				`${import.meta.env.VITE_APP_URL}/api/users`,
-				{
-					id,
-					name,
-					email,
-					password,
-				}
+				data
 			);
 			if (!res) {
 				throw new Error("Something went wrong");
@@ -36,6 +38,7 @@ const useUpdateUser = () => {
 				error: null,
 				isCheckingAuth: false,
 			}));
+			toast.success("User updated successfully");
 		} catch (error) {
 			toast.error(error.message);
 		} finally {

@@ -8,6 +8,7 @@ import path from "path";
 import { messageRoutes } from "./routes/message.route.js";
 import { userRoutes } from "./routes/users.routes.js";
 import { app, server } from "./socket/socket.js";
+import bodyParser from "body-parser";
 
 dotenv.config();
 
@@ -20,6 +21,8 @@ app.use(
 		credentials: true,
 	})
 );
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 

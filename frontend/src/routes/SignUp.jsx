@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Loader from "../components/Loader";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useSignup from "../hooks/useSignup";
 
 const SignUp = ({ URL, user, setUser }) => {
@@ -115,6 +115,12 @@ const SignUp = ({ URL, user, setUser }) => {
 									onClick={() => setFormData({ ...formData, gender: "Female" })}
 								/>
 							</div>
+							<p className='text-center mt-6'>
+								Have an account?{" "}
+								<Link to='/login' className='link link-primary'>
+									Login
+								</Link>
+							</p>
 							<div className='form-control mt-6'>
 								<button className='btn btn-primary' type='submit'>
 									Signup

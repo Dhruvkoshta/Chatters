@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Loader from "../components/Loader";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
 
 const SignUp = ({ URL, user, setUser }) => {
@@ -63,6 +63,13 @@ const SignUp = ({ URL, user, setUser }) => {
 									onChange={handleChange}
 								/>
 							</div>
+
+							<p className='text-center mt-6'>
+								Don't have an account?{" "}
+								<Link to='/register' className='link link-primary'>
+									Sign up
+								</Link>
+							</p>
 
 							<div className='form-control mt-6'>
 								<button className='btn btn-primary' type='submit'>
