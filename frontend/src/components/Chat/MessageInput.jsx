@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { IoSend } from "react-icons/io5";
+import { IoDocumentAttachOutline, IoSend } from "react-icons/io5";
 import useSendMessage from "../../hooks/useSendMessage";
+import { IoMdAttach } from "react-icons/io";
+import { FaImage } from "react-icons/fa6";
 
 const MessageInput = () => {
 	const [message, setMessage] = useState("");
@@ -18,6 +20,32 @@ const MessageInput = () => {
 				className='flex items-center gap-3 p-2 sticky bottom-2 '
 				onSubmit={handleSubmit}
 			>
+				<div className='dropdown dropdown-top'>
+					<div
+						tabIndex={0}
+						role='button'
+						className='btn btn-neutral rounded-full '
+					>
+						<IoMdAttach className='text-lg' />
+					</div>
+					<ul
+						tabIndex={0}
+						className='dropdown-content bg-neutral-content menu rounded-box z-[1] w-40 p-2 m-4 shadow'
+					>
+						<li>
+							<button className='dropdown-item'>
+								<FaImage />
+								Image
+							</button>
+						</li>
+						<li>
+							<button className='dropdown-item'>
+								<IoDocumentAttachOutline />
+								Document
+							</button>
+						</li>
+					</ul>
+				</div>
 				<input
 					type='text'
 					placeholder='Say Hi...👋'
